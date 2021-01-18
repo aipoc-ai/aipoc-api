@@ -10,4 +10,4 @@ class robo(models.Model):
     camera = models.BooleanField()
     ir = models.BooleanField()
     def __str__(self):
-        return self.id
+        return "aipoc"

@@ -8,7 +8,7 @@ from .serializers import ItemSerializer
 @csrf_exempt
 def item_list(request):
     if request.method == 'GET':
-        items = item.objects.all()
+        items = robo.objects.all()
         serializer = ItemSerializer(items, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
@@ -26,8 +26,8 @@ def item_detail(request, pk):
     Retrieve, update or delete a code snippet.
     """
     try:
-        items = item.objects.get(id=pk)
-    except item.DoesNotExist:
+        items = robo.objects.get(id=pk)
+    except robo.DoesNotExist:
         return HttpResponse(status=404)
 
     if request.method == 'GET':

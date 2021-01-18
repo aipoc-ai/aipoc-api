@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from aipocapi.api import views
 
 urlpatterns = [
+    path('items/',views.item_list),
+    path('items/<int:pk>',views.item_detail),
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
 ]
