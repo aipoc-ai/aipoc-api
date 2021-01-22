@@ -12,12 +12,12 @@ def item_list(request):
         serializer = ItemSerializer(items, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
-        tutorial_data = JSONParser().parse(request)
-        tutorial_serializer = ItemSerializer(data=tutorial_data)
-        if tutorial_serializer.is_valid():
-            tutorial_serializer.save()
-            return JsonResponse(tutorial_serializer.data, status=status.HTTP_201_CREATED) 
-        return JsonResponse(tutorial_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        data = JSONParser().parse(request)
+        serializer = ItemSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data) 
+        return JsonResponse(serializer.errors)
 
 
 @csrf_exempt
@@ -35,14 +35,12 @@ def item_detail(request, pk):
         return JsonResponse(serializer.data)
 
     elif request.method == 'PUT':
-        tutorial_data = JSONParser().parse(request) 
-        tutorial_serializer = ItemSerializer(items, data=tutorial_data) 
-        tutorial_serializer.save() 
-        return JsonResponse(tutorial_serializer.data)
-        if tutorial_serializer.is_valid(): 
-            tutorial_serializer.save() 
-            return JsonResponse(tutorial_serializer.data) 
-        return JsonResponse(tutorial_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        data = JSONParser().parse(request) 
+        serializer = ItemSerializer(items, data=data) 
+        if serializer.is_valid(): 
+            serializer.save() 
+            return JsonResponse(serializer.data) 
+        return JsonResponse(serializer.errors)
 
     elif request.method == 'DELETE':
         items.delete()
