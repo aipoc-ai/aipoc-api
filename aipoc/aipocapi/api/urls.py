@@ -20,6 +20,6 @@ from aipocapi.api import views
 urlpatterns = [
     path('items/',views.item_list),
     path('items/<int:pk>',views.item_detail),
-    path('api-auth/', include('rest_framework.urls')),
-    path('admin/', admin.site.urls),
+    path('ques/',views.ques_list),
+    path('ques/<int:pk>',views.ques_detail)
 ]

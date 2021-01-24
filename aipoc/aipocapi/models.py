@@ -11,3 +11,7 @@ class robo(models.Model):
     ir = models.BooleanField()
     def __str__(self):
         return "aipoc"
+
+class ques(models.Model):
+    id = models.AutoField(primary_key=True)
+    asked_ques = models.TextField()
